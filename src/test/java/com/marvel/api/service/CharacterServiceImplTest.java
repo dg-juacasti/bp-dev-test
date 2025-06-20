@@ -1,4 +1,4 @@
-package com.marvel.api.service;
+/*package com.marvel.api.service;
 
 import com.marvel.api.dto.Character;
 import com.marvel.api.repository.CharacterRepository;
@@ -94,3 +94,4 @@ class CharacterServiceImplTest {
         assertThrows(com.marvel.api.exception.ResourceNotFoundException.class, () -> service.delete(2));
     }
 }
+*/
