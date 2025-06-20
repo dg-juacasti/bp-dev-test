@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: Marvel Characters API
+  version: 1.0.0
+  description: "Colecci\xF3n de pruebas para la API REST de personajes de Marvel,\
+    \ incluyendo casos exitosos, validaciones y errores de nombre duplicado. Ahora\
+    \ con username en la ruta."
+paths:
+  /ezamoram/api/characters:
+    get:
+      summary: Obtener todos los personajes
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Crear personaje (faltan campos requeridos)
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              name: ''
+              alterego: ''
+              description: ''
+              powers: []
+  /ezamoram/api/characters/1:
+    get:
+      summary: Obtener personaje por ID (exitoso)
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Actualizar personaje (exitoso)
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              name: Iron Man
+              alterego: Tony Stark
+              description: Updated description
+              powers:
+              - Armor
+              - Flight
+    delete:
+      summary: Eliminar personaje (exitoso)
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+  /ezamoram/api/characters/999:
+    get:
+      summary: Obtener personaje por ID (no existe)
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Actualizar personaje (no existe)
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              name: Iron Man
+              alterego: Tony Stark
+              description: Updated description
+              powers:
+              - Armor
+              - Flight
+    delete:
+      summary: Eliminar personaje (no existe)
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: Successful response
