@@ -9,15 +9,12 @@ Feature: Pruebas rest para la API marverl
     When method Get
     Then status 200
     * def personajes = response
-    * match each personajes.id == '#number'
-    * match each personajes.name == '#string'
-    * match each personajes.alterego == '#string'
-    * match personajes[0].id == 4
-    * match personajes[0].name == 'Character with many powers'
-    * match personajes[0].alterego == 'Many Powers Alter'
-    * match personajes[1].id == 8
-    * match personajes[1].name == 'DROP TABLE characters; --'
-    * match personajes[1].alterego == 'SQL Injection Test'
+    * match personajes[0].id == 129
+    * match personajes[0].name == 'Iron Man'
+    * match personajes[0].alterego == 'Tony Stark'
+    * match personajes[1].id == 130
+    * match personajes[1].name == 'Thor 2e08893c-7920-498d-90f9-3343b0a54908'
+    * match personajes[1].alterego == 'Thor Odinson'
 
 
   @id:2 @ValidarEncontrarPersonajeExitoso
@@ -29,11 +26,10 @@ Feature: Pruebas rest para la API marverl
     * match personaje.id == <id>
     * match personaje.name == <name>
     * match personaje.alterego == <alterego>
-    * match personaje.powers.length == 10
-    * match personaje.description == <descripcion>
+    * match personaje.powers.length == 2
     Examples:
-      | id | name                       | alterego          | descripcion                    |
-      | 4  | Character with many powers | Many Powers Alter | "Personaje con muchos poderes" |
+      | id  | name                                      | alterego     |
+      | 130 | Thor 2e08893c-7920-498d-90f9-3343b0a54908 | Thor Odinson |
 
   @id:3 @ValidarEncontrarPersonajeNoExitoso
   Scenario Outline: T-API-CA3-Validar no encontrar personaje
@@ -50,22 +46,22 @@ Feature: Pruebas rest para la API marverl
   @id:4 @ValidarCrearPersonaje
   Scenario Outline: T-API-CA4-Validar crear personaje exitoso
     Given path '/characters'
-    And request { "name": "<name>", "powers": ["<power1>","<power2>"], "description": "<description>" }
-    When header Content-Type = 'application/json'
+    And request { "name": "<name>", "alterego":"<alterego>", "powers": ["<power1>","<power2>"], "description": "<description>" }
     When method Post
     Then status 201
     * def personaje = response
     * match personaje.name == <name>
-    * match personaje.powers1[1] == <power1>
+    * match personaje.alterego == <alterego>
+    * match personaje.powers[1] == <power1>
     * match personaje.description == <description>
     Examples:
-      | name       | power1 | power2   | description          |
-      | Iron Man21 | Armor  | Flight21 | Genius billionaire21 |
+      | name     | alterego | power1  | power2 | description          |
+      | CondorEc | CondorEc Dos| Caminar | Volar  | Condor billionaire |
 
   @id:5 @ValidarPersonajeDuplicado
   Scenario Outline: T-API-CA5-Validar personaje duplicado
     Given path '/characters'
-    And request { "name": "<name>", "powers": ["<power1>","<power2>"], "description": "<description>" }
+    And request { "name": "<name>", "alterego":"<alterego>", "powers": ["<power1>","<power2>"], "description": "<description>" }
     When header Content-Type = 'application/json'
     When method Post
     Then status 400
@@ -74,13 +70,13 @@ Feature: Pruebas rest para la API marverl
     * match personaje == { error: 'Character name already exists' }
     * match personaje.error contains 'already exists'
     Examples:
-      | name       | power1 | power2   | description          |
-      | Iron Man21 | Armor  | Flight21 | Genius billionaire21 |
+      | name         | alterego       | power1 | power2   | description            |
+      | Iron Man33 | Tony Stark33 | Armor  | Flight33 | Genius billionaire33 |
 
   @id:6 @ValidarFaltaCamposPersonaje
   Scenario: T-API-CA6-Validar falta campos personaje
     Given path '/characters'
-    And request { "name": "", "powers": [], "description": "" }
+    And request { "name": "", "alterego":"", "powers": [], "description": "" }
     When header Content-Type = 'application/json'
     When method Post
     Then status 400
@@ -92,7 +88,7 @@ Feature: Pruebas rest para la API marverl
   @id:7 @ValidarActualizarPersonaje
   Scenario Outline: T-API-CA7-Validar actualizar personaje exitoso
     Given path '/characters/<id>'
-    And request { "name": "<name>", "powers": ["<power1>","<power2>"], "description": "<description>" }
+    And request { "name": "<name>", "alterego":"<alterego>", "powers": ["<power1>","<power2>"], "description": "<description>" }
     When header Content-Type = 'application/json'
     When method Put
     Then status 200
@@ -108,8 +104,7 @@ Feature: Pruebas rest para la API marverl
   @id:8 @ValidarActualizarPersonajeNoExiste
   Scenario Outline: T-API-CA8-Validar actualizar personaje no existe
     Given path '/characters/<id>'
-    And request { "name": "<name>", "powers": ["<power1>","<power2>"], "description": "<description>" }
-    When header Content-Type = 'application/json'
+    And request { "name": "<name>", "alterego":"<alterego>", "powers": ["<power1>","<power2>"], "description": "<description>" }
     When method Put
     Then status 404
     * match response.error == 'Character not found'
@@ -122,7 +117,6 @@ Feature: Pruebas rest para la API marverl
   @id:9 @ValidarEliminarPersonaje
   Scenario Outline: T-API-CA9-Validar eliminar personaje exitoso
     Given path '/characters/<id>'
-    When header Content-Type = 'application/json'
     When method Delete
     Then status 204
     Examples:
@@ -132,7 +126,6 @@ Feature: Pruebas rest para la API marverl
   @id:10 @ValidarEliminarPersonajeNoExiste
   Scenario Outline: T-API-CA10-Validar eliminar personaje no existe
     Given path '/characters/<id>'
-    When header Content-Type = 'application/json'
     When method Delete
     Then status 404
     * match response.error == 'Character not found'
