@@ -1,6 +1,0 @@
-{
-  "name": "Error Character",
-  "alterego": "Error Alterego",
-  "description": "This character will cause a server error",
-  "powers": ["Crash Server", "Internal Error"]
-}
