@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Karate Timeline</title>
+    <style>
+      body, html { font-family: arial, sans-serif; font-size: 11pt; }
+      #visualization { box-sizing: border-box; width: 100%; height: 300px; }
+      .vis-item.failed { background-color: #F2928C; }
+      .page-heading { padding: 0.5em; margin-bottom: 0.5em; background-color: lightcyan; border: 1px solid gray; }
+    </style>
+    <script src="res/vis.min.js"></script>
+    <link href="res/vis.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="page-heading">
+      <a href="karate-summary.html">Summary</a>
+    </div>     
+    <div id="visualization"></div>
+    <script>
+var groups = [{"content":"main","id":1}];
+var items = [{"id":1,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[1:8]","start":1750438614640,"end":1750438616621,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[1:8] 11:56:54.640-11:56:56.621 Obtener todos los personajes exitosamente 200"},{"id":2,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[2:16]","start":1750438616639,"end":1750438616892,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[2:16] 11:56:56.639-11:56:56.892 Obtener personaje por ID exitosamente 200","className":"failed"},{"id":3,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[3:25]","start":1750438616921,"end":1750438617087,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[3:25] 11:56:56.921-11:56:57.087 T-API-HU-RET-444-CA03-Obtener personaje por ID no existente 404 - karate"},{"id":4,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[4:34]","start":1750438617101,"end":1750438617913,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[4:34] 11:56:57.101-11:56:57.913 Crear personaje exitosamente 201","className":"failed"},{"id":5,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[5:42]","start":1750438617935,"end":1750438618093,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[5:42] 11:56:57.935-11:56:58.093 Crear personaje con nombre duplicado 400"},{"id":6,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[6:52]","start":1750438618107,"end":1750438618288,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[6:52] 11:56:58.107-11:56:58.288 Crear personaje con campos requeridos faltantes 400"},{"id":7,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[7:62]","start":1750438618302,"end":1750438618468,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[7:62] 11:56:58.302-11:56:58.468 Actualizar personaje exitosamente 200","className":"failed"},{"id":8,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[8:72]","start":1750438618483,"end":1750438618674,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[8:72] 11:56:58.483-11:56:58.674 Actualizar personaje no existente 404"},{"id":9,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[9:82]","start":1750438618685,"end":1750438618851,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[9:82] 11:56:58.685-11:56:58.851 Eliminar personaje exitosamente 204","className":"failed"},{"id":10,"group":1,"content":"com\/marvel\/api\/service\/features\/marvelCharactersApi[10:90]","start":1750438618866,"end":1750438619037,"title":"com\/marvel\/api\/service\/features\/marvelCharactersApi[10:90] 11:56:58.866-11:56:59.037 Eliminar personaje no existente 404 - karate"}];
+</script>
+    <script>
+      var container = document.getElementById('visualization');
+      var timeline = new vis.Timeline(container);
+      timeline.setOptions({groupOrder: 'content'});
+      timeline.setGroups(new vis.DataSet(groups));
+      timeline.setItems(new vis.DataSet(items));
+    </script>
+  </body>
+</html>

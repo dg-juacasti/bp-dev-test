@@ -15,18 +15,18 @@ plugins {
 
 group = 'com.marvel.api'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '21'
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
-dependencies {
-    // Use JUnit test framework.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 
-    // This dependency is used by the application.
+dependencies {
+    testImplementation 'com.intuit.karate:karate-junit5:1.4.1'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
     implementation 'com.google.guava:guava:33.2.0-jre'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -39,27 +39,24 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
 }
 
-java {
-    // Apply a specific Java toolchain to ease working on different environments.
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+sourceSets {
+    test {
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
     }
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'com.marvel.api.App'
-}
+
 
 test {
     useJUnitPlatform()
-}
-
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
-
-// Added task to run the application
-bootRun {
-    // Specify the main class of the application.
-    mainClass = 'com.marvel.api.App'
+    systemProperty "karate.options", System.properties.getProperty("karate.options", "--tags ~@ignore")
+    systemProperty "karate.env", System.properties.getProperty("karate.env", "dev")
+    outputs.upToDateWhen { false }
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
 }
