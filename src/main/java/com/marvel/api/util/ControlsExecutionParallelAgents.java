@@ -32,7 +32,7 @@ public class ControlsExecutionParallelAgents {
         logger.log(Level.INFO, () -> "=====> Total Agentes: '" + totalAgentes + "' | Agente Num: '" + agenteNum + "'");
 
         final String FEATURES_PATH = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "java"
-                + File.separator + "com" + File.separator + "pichincha" + File.separator + "features" + File.separator;
+                + File.separator + "com" + File.separator + "marvel" + File.separator + "api" + File.separator + "service" + File.separator + "features" + File.separator;
 
         allFeatures = listFilesByFolder(FEATURE_NAME, new File(FEATURES_PATH));
 
