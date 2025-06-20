@@ -34,7 +34,7 @@ public class TestRunner {
         ControlsExecutionParallelAgents.featuresSegmentation();
 
         Results results = Runner.path("src/test/java/com/marvel/api/service")
-                .tags("@ValidarPersonajes").outputCucumberJson(true).parallel(5);
+                .tags("@ValidarCrearPersonaje").outputCucumberJson(true).parallel(5);
 
         String karateOutputPath = "build/karate-reports"; //donde se genera el reporte
         generateReport(karateOutputPath);
