@@ -3,7 +3,7 @@
     "_postman_id": "marvel-api-collection-003",
     "name": "Marvel Characters API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Colección de pruebas para la API REST de personajes de Marvel. Todas las rutas usan username en el path y el dominio http://bp-se-test-2c14c952e422.herokuapp.com."
+    "description": "Colección de pruebas para la API REST de personajes de Marvel. Todas las rutas usan username en el path y el dominio http://localhost:8080."
   },
   "item": [
     {
@@ -12,9 +12,9 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://bp-se-test-2c14c952e422.herokuapp.com/testuser/api/characters",
+          "raw": "http://localhost:8080/testuser/api/characters",
           "protocol": "http",
-          "host": ["bp-se-test-2c14c952e422.herokuapp.com"],
+          "host": ["localhost:8080"],
           "path": ["testuser", "api", "characters"]
         }
       }
@@ -25,9 +25,9 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://bp-se-test-2c14c952e422.herokuapp.com/testuser/api/characters/1",
+          "raw": "http://localhost:8080/testuser/api/characters/1",
           "protocol": "http",
-          "host": ["bp-se-test-2c14c952e422.herokuapp.com"],
+          "host": ["localhost:8080"],
           "path": ["testuser", "api", "characters", "1"]
         }
       }
@@ -38,9 +38,9 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://bp-se-test-2c14c952e422.herokuapp.com/testuser/api/characters/999",
+          "raw": "http://localhost:8080/testuser/api/characters/999",
           "protocol": "http",
-          "host": ["bp-se-test-2c14c952e422.herokuapp.com"],
+          "host": ["localhost:8080"],
           "path": ["testuser", "api", "characters", "999"]
         }
       }
@@ -57,9 +57,9 @@
           "raw": "{\n  \"name\": \"Iron Man\",\n  \"alterego\": \"Tony Stark\",\n  \"description\": \"Genius billionaire\",\n  \"powers\": [\"Armor\", \"Flight\"]\n}"
         },
         "url": {
-          "raw": "http://bp-se-test-2c14c952e422.herokuapp.com/testuser/api/characters",
+          "raw": "http://localhost:8080/testuser/api/characters",
           "protocol": "http",
-          "host": ["bp-se-test-2c14c952e422.herokuapp.com"],
+          "host": ["localhost:8080"],
           "path": ["testuser", "api", "characters"]
         }
       }
@@ -73,7 +73,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Iron Man\",\n  \"alterego\": \"Otro\",\n  \"description\": \"Otro\",\n  \"powers\": [\"Armor\"]\n}"
+          "raw
         },
         "url": {
           "raw": "http://bp-se-test-2c14c952e422.herokuapp.com/testuser/api/characters",
