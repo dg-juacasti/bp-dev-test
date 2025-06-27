@@ -1,0 +1,1 @@
+web: java -jar build/libs/marvel-api-0.0.1-SNAPSHOT.jar
