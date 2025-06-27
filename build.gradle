@@ -14,7 +14,7 @@ plugins {
 }
 
 group = 'com.marvel.api'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '17'
 
 repositories {
@@ -61,8 +61,15 @@ test {
     useJUnitPlatform()
 }
 
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+task stage(type: Copy, dependsOn: ['build', 'clean']) {
+    from jar.archivePath
+    into project.rootDir
+    rename {
+        'marvel-api-0.0.1.jar'
+    }
+}
+stage.mustRunAfter(clean)
+
 
 // Added task to run the application
 bootRun {
